@@ -1,0 +1,53 @@
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组扩展方法，reduce</title>
+</head>
+
+<body>
+  <div id="j_cookieData" style="display:none">BAIDUID=4CBE2AFD48915BCCF29F5D01AFDABA38; PSTM=1546407317; BIDUPSID=55F71B08ED224F5F198831176E69FC98; BD_UPN= 123253; MCITY=-7543A; BDORZ=B490B5EBF6F_3CD402E515D22BCDA1598; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; deLPer=0; BD_CK_SAM=1; PSINO=3; BD_HOME=1; H_PS_PSSID=1430_21118_20880_28557_28608_28585_28638_ 26350_28518_28626_28606</div>
+  <script type="text/javascript" src="./reduce.js"></script>
+  </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>reduce应用</title>
+  </head>
+  <body>
+    <div id="j_cookieData" style="display:none"
+  >BAIDUID=4CBE2AFD48915BCCF29F5D01AFDABA38; PSTM=1546407317; BIDUPSID=55F71B08ED224F5F198831176E69FC98; BD_UPN= 123253; MCITY=-7543A; BDORZ=B490B5EBF6F_3CD402E515D22BCDA1598; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0; deLPer=0; BD_CK_SAM=1; PSINO=3; BD_HOME=1; H_PS_PSSID=1430_21118_20880_28557_28608_28585_28638_ 26350_28518_28626_28606</div>
+    <script type="text/javascript">
+      // 是type="text/javascript"，不是type="javascript"！！！
+
+      // 需求，将j_cookieData里面的内容变为对象
+      // {
+      //   BAIDUID: 4CBE2AFD48915BCCF29F5D01AFDABA38,
+      //   PSTM: 1546407317
+      //   ......
+      // }
+      var cookieDatas = document.getElementById('j_cookieData').innerHTML;
+      cookieArr = cookieDatas.split('; ');  //注意“；”后面的空格不能省
+      console.log(cookieArr);
+      // 变成数组以后，用reduce
+      var cookieObj = cookieArr.reduce(function(prev, elem){
+        var item = elem.split("=");
+        // 往prev中添加属性
+        prev[item[0]] = item[1];
+        return prev;
+      },{});
+      console.log(cookieObj);
+      
+      
+    </script>
+  </body>
+  
+</html>
